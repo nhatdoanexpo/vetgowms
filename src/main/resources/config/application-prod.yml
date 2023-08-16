@@ -17,7 +17,7 @@ logging:
   level:
     ROOT: INFO
     tech.jhipster: INFO
-    vn.vetgo.vetgowms: INFO
+    vn.vetgo.wms: INFO
 
 eureka:
   instance:
@@ -136,7 +136,7 @@ jhipster:
         # - In the JHipster Registry (which includes a Spring Cloud Config server)
         # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
         # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-        base64-secret: YTJkYjYyMGNmODQ4YTg2OWY1Y2M5OTY0NDJhYmY5YjlhYmYyYjA5NTE5NDY1Njg1ZDNlNDA4ZGYxZTc1NjU2YTY1NGU0MmI1ODdhMGZhYjU0YzZjYjJhNGI5ZDE1YjcwMWNmYzUyNmJlZDU0YjE4OTFiZmU5ODdlOTAxY2FhNDU=
+        base64-secret: YTFhZDIzODhkZTZiMmYyYjUyYmUxNzEzYWY4YzI3ZjYzNjcxZGY0ZTgwODlhMjcyYjRmNDE5MDQ0MGEyNjQ1YzAwMmFhZTg5ZmUyM2JjMWNjNTNmNjVkZTEwYmZjMTlhZDMwMzg5NWEzZDM5ZGJkMTBiY2IxZjQxYWQ0MjU4NWM=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000

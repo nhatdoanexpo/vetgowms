@@ -4,7 +4,7 @@
 <configuration scan="true">
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
-    <logger name="vn.vetgo.vetgowms" level="INFO"/>
+    <logger name="vn.vetgo.wms" level="INFO"/>
 
     <logger name="tech.jhipster" level="WARN"/>
 

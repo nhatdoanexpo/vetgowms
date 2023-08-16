@@ -1,27 +1,23 @@
 <div>
   <div class="d-flex justify-content-center">
     <div class="col-md-8">
-      <h1 jhiTranslate="register.title" data-cy="registerTitle">Registration</h1>
+      <h1 data-cy="registerTitle">Đăng ký</h1>
 
-      <div class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
-        <strong>Registration saved!</strong> Please check your email for confirmation.
+      <div class="alert alert-success" *ngIf="success">
+        <strong>Đăng ký thành công!</strong> Bạn vui lòng kiểm tra hộp thư để xác nhận tài khoản.
       </div>
 
-      <div class="alert alert-danger" *ngIf="error" jhiTranslate="register.messages.error.fail">
-        <strong>Registration failed!</strong> Please try again later.
+      <div class="alert alert-danger" *ngIf="error"><strong>Đăng ký thất bại!</strong> Vui lòng thử lại sau.</div>
+
+      <div class="alert alert-danger" *ngIf="errorUserExists">
+        <strong>Tên tài khoản này đã được sử dụng!</strong> Bạn vui lòng chọn tên tài khoản khác.
       </div>
 
-      <div class="alert alert-danger" *ngIf="errorUserExists" jhiTranslate="register.messages.error.userexists">
-        <strong>Login name already registered!</strong> Please choose another one.
+      <div class="alert alert-danger" *ngIf="errorEmailExists">
+        <strong>Email này đã được sử dụng!</strong> Bạn vui lòng nhập email khác.
       </div>
 
-      <div class="alert alert-danger" *ngIf="errorEmailExists" jhiTranslate="register.messages.error.emailexists">
-        <strong>Email is already in use!</strong> Please choose another one.
-      </div>
-
-      <div class="alert alert-danger" *ngIf="doNotMatch" jhiTranslate="global.messages.error.dontmatch">
-        The password and its confirmation do not match!
-      </div>
+      <div class="alert alert-danger" *ngIf="doNotMatch">Xác nhận mật khẩu không khớp!</div>
     </div>
   </div>
 
@@ -29,108 +25,68 @@
     <div class="col-md-8">
       <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
         <div class="mb-3">
-          <label class="form-label" for="login" jhiTranslate="global.form.username.label">Username</label>
+          <label class="form-label" for="login">Tên tài khoản</label>
           <input
             type="text"
             class="form-control"
             id="login"
             name="login"
-            placeholder="{{ 'global.form.username.placeholder' | translate }}"
+            placeholder="Nhập tên tài khoản của bạn"
             formControlName="login"
             data-cy="username"
             #login
           />
 
           <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('login')?.errors?.required"
-              jhiTranslate="register.messages.validate.login.required"
-            >
-              Your username is required.
+            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.required"> Bạn phải nhập tên tài khoản. </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.minlength">
+              Tên tài khoản phải có ít nhất 1 ký tự.
             </small>
 
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('login')?.errors?.minlength"
-              jhiTranslate="register.messages.validate.login.minlength"
-            >
-              Your username is required to be at least 1 character.
+            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.maxlength">
+              Tên tài khoản không được vượt quá 50 ký tự.
             </small>
 
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('login')?.errors?.maxlength"
-              jhiTranslate="register.messages.validate.login.maxlength"
-            >
-              Your username cannot be longer than 50 characters.
-            </small>
-
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('login')?.errors?.pattern"
-              jhiTranslate="register.messages.validate.login.pattern"
-            >
-              Your username is invalid.
-            </small>
+            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.pattern"> Your username is invalid. </small>
           </div>
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="email" jhiTranslate="global.form.email.label">Email</label>
+          <label class="form-label" for="email">Email</label>
           <input
             type="email"
             class="form-control"
             id="email"
             name="email"
-            placeholder="{{ 'global.form.email.placeholder' | translate }}"
+            placeholder="Nhập email của bạn"
             formControlName="email"
             data-cy="email"
           />
 
           <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('email')?.errors?.required"
-              jhiTranslate="global.messages.validate.email.required"
-            >
-              Your email is required.
+            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.required"> Bạn phải nhập email. </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.invalid"> Email bạn nhập không hợp lệ. </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.minlength">
+              Email phải có ít nhất 5 ký tự.
             </small>
 
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('email')?.errors?.invalid"
-              jhiTranslate="global.messages.validate.email.invalid"
-            >
-              Your email is invalid.
-            </small>
-
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('email')?.errors?.minlength"
-              jhiTranslate="global.messages.validate.email.minlength"
-            >
-              Your email is required to be at least 5 characters.
-            </small>
-
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('email')?.errors?.maxlength"
-              jhiTranslate="global.messages.validate.email.maxlength"
-            >
-              Your email cannot be longer than 50 characters.
+            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.maxlength">
+              Email không được vượt quá 50 ký tự.
             </small>
           </div>
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="password" jhiTranslate="global.form.newpassword.label">New password</label>
+          <label class="form-label" for="password">Mật khẩu mới</label>
           <input
             type="password"
             class="form-control"
             id="password"
             name="password"
-            placeholder="{{ 'global.form.newpassword.placeholder' | translate }}"
+            placeholder="Nhập mật khẩu mới"
             formControlName="password"
             data-cy="firstPassword"
           />
@@ -138,28 +94,14 @@
           <div
             *ngIf="registerForm.get('password')!.invalid && (registerForm.get('password')!.dirty || registerForm.get('password')!.touched)"
           >
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('password')?.errors?.required"
-              jhiTranslate="global.messages.validate.newpassword.required"
-            >
-              Your password is required.
+            <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.required"> Bạn phải nhập mật khẩu. </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.minlength">
+              Mật khẩu phải có ít nhất 4 ký tự.
             </small>
 
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('password')?.errors?.minlength"
-              jhiTranslate="global.messages.validate.newpassword.minlength"
-            >
-              Your password is required to be at least 4 characters.
-            </small>
-
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('password')?.errors?.maxlength"
-              jhiTranslate="global.messages.validate.newpassword.maxlength"
-            >
-              Your password cannot be longer than 50 characters.
+            <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.maxlength">
+              Mật khẩu không được vượt quá 50 ký tự.
             </small>
           </div>
 
@@ -167,13 +109,13 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="confirmPassword" jhiTranslate="global.form.confirmpassword.label">New password confirmation</label>
+          <label class="form-label" for="confirmPassword">Xác nhận mật khẩu mới</label>
           <input
             type="password"
             class="form-control"
             id="confirmPassword"
             name="confirmPassword"
-            placeholder="{{ 'global.form.confirmpassword.placeholder' | translate }}"
+            placeholder="Nhập lại mật khẩu mới"
             formControlName="confirmPassword"
             data-cy="secondPassword"
           />
@@ -184,49 +126,29 @@
               (registerForm.get('confirmPassword')!.dirty || registerForm.get('confirmPassword')!.touched)
             "
           >
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('confirmPassword')?.errors?.required"
-              jhiTranslate="global.messages.validate.confirmpassword.required"
-            >
-              Your confirmation password is required.
+            <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.required">
+              Bạn phải nhập lại mật khẩu để xác nhận.
             </small>
 
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('confirmPassword')?.errors?.minlength"
-              jhiTranslate="global.messages.validate.confirmpassword.minlength"
-            >
-              Your confirmation password is required to be at least 4 characters.
+            <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.minlength">
+              Mật khẩu phải có ít nhất 4 ký tự.
             </small>
 
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('confirmPassword')?.errors?.maxlength"
-              jhiTranslate="global.messages.validate.confirmpassword.maxlength"
-            >
-              Your confirmation password cannot be longer than 50 characters.
+            <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.maxlength">
+              Mật khẩu không được vượt quá 50 ký tự.
             </small>
           </div>
         </div>
 
-        <button
-          type="submit"
-          [disabled]="registerForm.invalid"
-          class="btn btn-primary"
-          jhiTranslate="register.form.button"
-          data-cy="submit"
-        >
-          Register
-        </button>
+        <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" data-cy="submit">Đăng ký</button>
       </form>
 
       <div class="mt-3 alert alert-warning">
-        <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
-        <a class="alert-link" routerLink="/login" jhiTranslate="global.messages.info.authenticated.link">sign in</a
-        ><span jhiTranslate="global.messages.info.authenticated.suffix"
-          >, you can try the default accounts:<br />- Administrator (login="admin" and password="admin") <br />- User (login="user" and
-          password="user").</span
+        <span>Nếu bạn muốn </span>
+        <a class="alert-link" routerLink="/login">đăng nhập</a
+        ><span
+          >, bạn có thể thử với tài khoản mặc định:<br />- Quản trị viên (tài khoản="admin" và mật khẩu="admin") <br />- Người dùng (tài
+          khoản="user" và mật khẩu="user").</span
         >
       </div>
     </div>

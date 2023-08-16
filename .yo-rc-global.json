@@ -1,8 +1,8 @@
 {
   "generator-jhipster:7.9.3": {
     "promptValues": {
-      "packageName": "vn.vetgo.vetgowms",
-      "nativeLanguage": "en"
+      "packageName": "vn.vetgo.wms",
+      "nativeLanguage": "vi"
     }
   }
 }

@@ -7,23 +7,23 @@ export const errorRoute: Routes = [
     path: 'error',
     component: ErrorComponent,
     data: {
-      pageTitle: 'error.title',
+      pageTitle: 'Trang thông tin lỗi!',
     },
   },
   {
     path: 'accessdenied',
     component: ErrorComponent,
     data: {
-      pageTitle: 'error.title',
-      errorMessage: 'error.http.403',
+      pageTitle: 'Trang thông tin lỗi!',
+      errorMessage: 'Bạn không có quyền xem trang này.',
     },
   },
   {
     path: '404',
     component: ErrorComponent,
     data: {
-      pageTitle: 'error.title',
-      errorMessage: 'error.http.404',
+      pageTitle: 'Trang thông tin lỗi!',
+      errorMessage: 'Trang không tồn tại.',
     },
   },
   {
