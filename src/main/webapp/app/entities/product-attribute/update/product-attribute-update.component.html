@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-product-attribute-heading" data-cy="ProductAttributeCreateUpdateHeading">Thêm mới hoặc cập nhật Product Attribute</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_productId">Product Id</label>
+          <input type="number" class="form-control" name="productId" id="field_productId" data-cy="productId" formControlName="productId" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_attributeName">Attribute Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="attributeName"
+            id="field_attributeName"
+            data-cy="attributeName"
+            formControlName="attributeName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_attributeValue">Attribute Value</label>
+          <input
+            type="text"
+            class="form-control"
+            name="attributeValue"
+            id="field_attributeValue"
+            data-cy="attributeValue"
+            formControlName="attributeValue"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Hủy</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Lưu</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

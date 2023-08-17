@@ -1,0 +1,24 @@
+{
+  "changelogDate": "20230817145255",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "productId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "attributeName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "attributeValue",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "ProductAttribute",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

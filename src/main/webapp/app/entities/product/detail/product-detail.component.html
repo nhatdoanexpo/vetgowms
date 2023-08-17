@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="product">
+      <h2 data-cy="productDetailsHeading"><span>Product</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ product.id }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ product.code }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ product.name }}</span>
+        </dd>
+        <dt><span>Retailer Id</span></dt>
+        <dd>
+          <span>{{ product.retailerId }}</span>
+        </dd>
+        <dt><span>Category Name</span></dt>
+        <dd>
+          <span>{{ product.categoryName }}</span>
+        </dd>
+        <dt><span>Allows Sale</span></dt>
+        <dd>
+          <span>{{ product.allowsSale }}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+          <span>{{ product.description }}</span>
+        </dd>
+        <dt><span>Has Variants</span></dt>
+        <dd>
+          <span>{{ product.hasVariants }}</span>
+        </dd>
+        <dt><span>Is Active</span></dt>
+        <dd>
+          <span>{{ product.isActive }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Quay lại</span>
+      </button>
+
+      <button type="button" [routerLink]="['/product', product.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Sửa</span>
+      </button>
+    </div>
+  </div>
+</div>
